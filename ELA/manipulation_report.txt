@@ -1,0 +1,27 @@
+--- Image Manipulation Analysis Report for: test.jpg ---
+Analysis Date: 2025-05-23T15:53:36
+
+--- Understanding Error Level Analysis (ELA) ---
+ELA is a technique used in digital image forensics to detect alterations or manipulations within an image.
+It works on the principle that re-saving a JPEG image, especially after modifications, will introduce different levels of compression artifacts across the image.
+Original areas of the image will have a consistent level of compression error, while manipulated or newly introduced areas (copied, pasted, or heavily edited) will show a different error level because they have been re-compressed, often multiple times or with different settings.
+
+How ELA is Performed in this Analysis:
+1.  **Re-compression:** The original image is intentionally re-saved at a known JPEG quality (e.g., 90%).
+2.  **Difference Calculation:** The absolute difference between the original image and this newly re-compressed image is calculated. Areas that have been manipulated will typically show higher differences (brighter areas in the ELA output) because their compression history is inconsistent with the rest of the image.
+3.  **Thresholding:** The difference image is converted to grayscale, and a thresholding technique (Otsu's method) is applied to create a binary mask. This mask highlights pixels with significant error levels.
+4.  **Dilation:** The mask is then dilated to expand the detected regions, making potential manipulations more visible and easier to interpret.
+5.  **Overlay:** A red overlay is created using this mask and combined with the original image to visually pinpoint the areas of suspected manipulation.
+
+--- ELA Findings for This Image ---
+Total Pixels in Image: 98304
+Pixels Identified as Potentially Manipulated by ELA: 80502
+Percentage of Image Showing ELA Anomalies: 81.89%
+
+Interpretation of ELA Anomalies:
+The ELA analysis indicates significant areas ({manipulation_percentage:.2f}%) with inconsistent compression characteristics. This strongly suggests that parts of the image have been altered. Common manipulations that cause such anomalies include:
+  - **Content Insertion/Splicing:** Adding objects or regions from another image.
+  - **Content Removal/Inpainting:** Erasing an object and filling the void, often with synthesized content.
+  - **Copy-Move Forgery:** Duplicating parts of the image and pasting them elsewhere within the same image.
+  - **Localized Adjustments:** Applying filters, brightness/contrast changes, or other edits to specific, non-uniform areas.
+  - **Multiple Re-compressions:** Parts of the image may have been saved multiple times or at different quality settings, leading to varied error levels.

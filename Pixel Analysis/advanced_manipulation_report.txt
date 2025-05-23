@@ -1,0 +1,19 @@
+Advanced Manipulation Detection Report
+    --------------------------------------
+    Image analyzed: test.jpg
+    Output saved: advanced_result.jpg
+
+    Description:
+    The image was analyzed using multiple local descriptors:
+    - High-pass noise residual map: highlights abrupt noise inconsistencies.
+    - Local Binary Pattern (LBP) texture map: identifies unnatural textural patterns.
+    - Z-score anomaly map: detects pixel intensity outliers using local statistical deviation.
+    - Edge map: outlines structural inconsistencies using Sobel gradient.
+
+    Combined anomaly map statistics:
+    - Min pixel value: 0
+    - Max pixel value: 82
+    - Mean pixel value: 26.68
+    - Threshold used (Otsu): 28
+
+    Suspicious regions were overlaid in red on the original image.

@@ -15,5 +15,6 @@ Advanced Manipulation Detection Report
     - Max pixel value: 82
     - Mean pixel value: 26.68
     - Threshold used (Otsu): 28
+    - Manipulated area percentage: 38.35%
 
     Suspicious regions were overlaid in red on the original image.

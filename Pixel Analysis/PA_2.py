@@ -41,10 +41,10 @@ def generate_pixel_analysis_report(image_path, stats_dict, output_image_path):
     - Max pixel value: {stats_dict['max']}
     - Mean pixel value: {stats_dict['mean']:.2f}
     - Threshold used (Otsu): {stats_dict['otsu_threshold']}
+    - Manipulated area percentage: {stats_dict['manipulation_percent']:.2f}%
 
     Suspicious regions were overlaid in red on the original image.
     """
-
     with open("advanced_manipulation_report.txt", "w") as f:
         f.write(report.strip())
     print(report.strip())
@@ -83,7 +83,7 @@ def detect_advanced_manipulation(image_path, output_path="advanced_output.jpg"):
     combined_map = cv2.addWeighted(combined_map, 0.8, edge_map, 0.2, 0)
     cv2.imwrite("step5_combined_map.jpg", combined_map)
 
-    # Step 6: Threshold
+     # Step 6: Threshold
     otsu_threshold, binary_mask = cv2.threshold(combined_map, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
     # Step 7: Overlay red mask
@@ -94,11 +94,16 @@ def detect_advanced_manipulation(image_path, output_path="advanced_output.jpg"):
     cv2.imwrite(output_path, final_output)
 
     # Step 8: Create report
+    total_pixels = binary_mask.size
+    manipulated_pixels = cv2.countNonZero(binary_mask)
+    manipulation_percent = (manipulated_pixels / total_pixels) * 100
+
     stats = {
         "min": int(np.min(combined_map)),
         "max": int(np.max(combined_map)),
         "mean": float(np.mean(combined_map)),
-        "otsu_threshold": int(otsu_threshold)
+        "otsu_threshold": int(otsu_threshold),
+        "manipulation_percent": manipulation_percent
     }
     generate_pixel_analysis_report(image_path, stats, output_path)
 

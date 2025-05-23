@@ -212,12 +212,8 @@ def detect_manipulation(image_path, output_ela_path="ela_result.jpg", output_ove
 
 # --- Usage Example ---
 if __name__ == "__main__":
-    # Specify the path to your image here.
-    # Make sure the image file exists in the same directory as your script,
-    # or provide the full path to the image.
-    image_to_analyze = "Sonali Jayarathne.png" # <--- IMPORTANT: Change this to your actual image file name!
-
-    # Example usage:
+    image_to_analyze = "test2.jpg" 
+    
     detect_manipulation(
         image_to_analyze,
         output_ela_path="output.jpg",

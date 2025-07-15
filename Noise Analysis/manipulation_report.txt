@@ -1,0 +1,16 @@
+
+    Manipulation Detection Report
+
+    Image Path: test2.jpg
+    Detection Status: Successful
+    Message: Manipulation detection completed in 0.3848 seconds.
+    Output Image Saved To: noise_detection_optimized.jpg
+
+    --- Detailed Analysis ---
+    The algorithm analyzes inconsistencies in the image noise to detect potential manipulations.
+    It calculates the local noise variance and thresholds it to identify regions with unusual noise patterns.
+    These regions are then highlighted with red rectangles in the output image.
+
+    Further analysis might involve adjusting the `window_size`, `threshold`, and `kernel_size` parameters
+    to fine-tune the detection sensitivity and reduce false positives or negatives.
+    
